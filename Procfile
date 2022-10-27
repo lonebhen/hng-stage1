@@ -1,0 +1,1 @@
+web: gunicorn 'hng_stage1.wsgi'
