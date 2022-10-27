@@ -7,7 +7,7 @@ from django.http import HttpResponse
 
 def get_user_info(request):
     data = {
-        "slackUsername":"ben kubi",
+        "slackUsername":"ben_kubi",
         "backend":True,
         "age":20,
         "bio":"I am ben, a computer engineering student aspiring to be a software engineer"
