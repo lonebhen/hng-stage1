@@ -1,9 +1,8 @@
+from django.http.response import JsonResponse
 from django.shortcuts import render
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from django.http import HttpResponse
 
 # Create your views here.
-
 
 
 data = {
@@ -18,13 +17,17 @@ error = {
     }
 
 
-@api_view(['GET'])
-def get_user_info(request):
-    
+def get_user_info(request):  
     if request.method == 'GET':
-        return Response(data)
+        response =  JsonResponse(data)
+        response["Access-Control-Allow-Origin"] = "*"
+        response["Access-Control-Allow-Methods"] = "GET,OPTIONS"
+        response["Access-Control-Max-Age"] = "1000"
+        response["Access-Control-Allow-Headers"] = "X-Requested-with,Content-Type"
 
-    return Response(error)
+        return response
+
+    return JsonResponse(error)
 
 
 
