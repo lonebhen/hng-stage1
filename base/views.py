@@ -1,25 +1,30 @@
-from django.http.response import JsonResponse
 from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 # Create your views here.
 
 
-def get_user_info(request):
-    data = {
+
+data = {
         "slackUsername":"ben_kubi",
         "backend":True,
         "age":20,
         "bio":"I am ben, a computer engineering student aspiring to be a software engineer"
 
     }
-    error = {
+error = {
         "message":"Invalid request method"
     }
-    if request.method == 'GET':
-        return JsonResponse(data)
 
-    return JsonResponse(error)
+
+@api_view(['GET'])
+def get_user_info(request):
+    
+    if request.method == 'GET':
+        return Response(data)
+
+    return Response(error)
 
 
 
