@@ -27,7 +27,16 @@ def get_user_info(request):
 
         return response
 
-    return JsonResponse(error)
+    else:
+        response =  JsonResponse(error)
+        response["Access-Control-Allow-Origin"] = "*"
+        response["Access-Control-Allow-Methods"] = "GET,OPTIONS"
+        response["Access-Control-Max-Age"] = "1000"
+        response["Access-Control-Allow-Headers"] = "X-Requested-with,Content-Type"
+
+        return response
+
+
 
 
 
